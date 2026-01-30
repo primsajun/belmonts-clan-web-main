@@ -1,0 +1,482 @@
+.legends-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6b5747 0%, #4a3f35 50%, #5d4a3a 100%);
+  color: #f0d891;
+  padding: 2rem;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Cinzel', 'Georgia', serif;
+  background-attachment: fixed;
+}
+
+.legends-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(240, 216, 145, 0.08) 2px,
+      rgba(240, 216, 145, 0.08) 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(240, 216, 145, 0.08) 2px,
+      rgba(240, 216, 145, 0.08) 4px
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Back Button */
+.back-button-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #8b7355 0%, #6b5747 100%);
+  border: 3px solid #f0d891;
+  color: #f0d891;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(240, 216, 145, 0.3), 0 0 20px rgba(240, 216, 145, 0.4);
+}
+
+.back-button-header::before {
+  content: '⟨';
+  margin-right: 0.5rem;
+}
+
+.back-button-header:hover {
+  background: linear-gradient(135deg, #f0d891 0%, #e8c76a 100%);
+  color: #5d4a3a;
+  transform: translateX(-8px);
+  box-shadow: inset 0 0 20px rgba(240, 216, 145, 0.5), 0 0 30px rgba(240, 216, 145, 0.6);
+}
+
+/* Container */
+.legends-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.legends-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(107, 87, 71, 0.8) 0%, rgba(93, 74, 58, 0.8) 100%);
+  border: 3px solid #f0d891;
+  border-radius: 0;
+  position: relative;
+  box-shadow: 
+    inset 0 0 30px rgba(240, 216, 145, 0.3),
+    0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+.legends-header::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: #f0d891;
+  border-radius: 2px;
+  box-shadow: 60px 0 0 #f0d891, -60px 0 0 #f0d891, 120px 0 0 #f0d891, -120px 0 0 #f0d891;
+}
+
+.legends-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #f0d891;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 1.5rem;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(240, 216, 145, 0.5);
+  font-family: 'Cinzel', serif;
+}
+
+.title-accent {
+  color: #b8956a;
+  margin: 0 1.5rem;
+  font-size: 0.8em;
+}
+
+.legends-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #e8c76a;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  font-family: 'Georgia', serif;
+}
+
+.header-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.ornament {
+  font-size: 1.5rem;
+  color: #f0d891;
+  text-shadow: 0 0 10px rgba(240, 216, 145, 0.6);
+}
+
+.ornament-line {
+  color: rgba(240, 216, 145, 0.5);
+  letter-spacing: 2px;
+}
+
+/* Warriors Grid */
+.legends-warriors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Warrior Card */
+.legend-warrior-card {
+  background: linear-gradient(135deg, rgba(107, 87, 71, 0.9) 0%, rgba(93, 74, 58, 0.9) 100%);
+  border: 3px solid #b8956a;
+  border-radius: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 
+    inset 0 0 20px rgba(240, 216, 145, 0.2),
+    0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.legend-warrior-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #f0d891, transparent);
+}
+
+.legend-warrior-card:hover {
+  transform: translateY(-8px);
+  border-color: #f0d891;
+  box-shadow: 
+    inset 0 0 30px rgba(240, 216, 145, 0.3),
+    0 0 40px rgba(240, 216, 145, 0.5);
+}
+
+/* Warrior Card Header */
+.warrior-card-header {
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, rgba(184, 149, 106, 0.3) 0%, rgba(154, 123, 90, 0.3) 100%);
+  border-bottom: 2px solid #b8956a;
+  text-align: center;
+}
+
+.warrior-crest-icon {
+  font-size: 3rem;
+  color: #f0d891;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(240, 216, 145, 0.7);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(240, 216, 145, 0.7);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(240, 216, 145, 1);
+  }
+}
+
+.warrior-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f0d891;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  font-family: 'Cinzel', serif;
+}
+
+.warrior-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #f0d891;
+  font-size: 1.2rem;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f0d891, transparent);
+  max-width: 100px;
+}
+
+/* Warrior Content */
+.warrior-content {
+  padding: 2rem;
+}
+
+.warrior-role-section,
+.warrior-years-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(184, 149, 106, 0.2) 0%, rgba(154, 123, 90, 0.2) 100%);
+  border: 2px solid #b8956a;
+  border-radius: 0;
+}
+
+.role-label,
+.years-label {
+  font-size: 0.9rem;
+  color: #e8c76a;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+.role-badge {
+  background: linear-gradient(135deg, #b8956a 0%, #9a7b5a 100%);
+  color: #f0d891;
+  padding: 0.5rem 1rem;
+  border: 2px solid #f0d891;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+.years-value {
+  color: #e8d4a0;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Georgia', serif;
+}
+
+.warrior-divider-simple {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b8956a, transparent);
+  margin: 1.5rem 0;
+}
+
+/* Description Section */
+.warrior-description-section {
+  margin-bottom: 1.5rem;
+}
+
+.description-title {
+  font-size: 1.1rem;
+  color: #f0d891;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+}
+
+.warrior-description {
+  font-size: 1rem;
+  color: #e8d4a0;
+  line-height: 1.8;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* Honor Badge */
+.warrior-honor-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(240, 216, 145, 0.25) 0%, rgba(184, 149, 106, 0.25) 100%);
+  border: 2px dashed #f0d891;
+  border-radius: 0;
+  margin-top: 1.5rem;
+}
+
+.honor-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(240, 216, 145, 0.6));
+}
+
+.honor-text {
+  font-size: 1rem;
+  color: #f0d891;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+/* Warrior Card Footer */
+.warrior-card-footer {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(184, 149, 106, 0.3) 0%, rgba(154, 123, 90, 0.3) 100%);
+  border-top: 2px solid #b8956a;
+}
+
+.footer-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #b8956a;
+  font-size: 1rem;
+}
+
+.footer-line {
+  letter-spacing: 2px;
+}
+
+/* Legends Footer */
+.legends-footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(107, 87, 71, 0.8) 0%, rgba(93, 74, 58, 0.8) 100%);
+  border: 3px solid #b8956a;
+  border-radius: 0;
+  margin-top: 4rem;
+}
+
+.footer-ornament-large {
+  color: #f0d891;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(240, 216, 145, 0.5);
+}
+
+.footer-text {
+  font-size: 1.1rem;
+  color: #e8d4a0;
+  font-style: italic;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', serif;
+}
+
+.footer-subtext {
+  font-size: 0.95rem;
+  color: #e8c76a;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .legends-page {
+    padding: 1rem;
+  }
+
+  .legends-header {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .legends-title {
+    font-size: 2rem;
+  }
+
+  .legends-subtitle {
+    font-size: 1rem;
+  }
+
+  .legends-warriors-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .warrior-name {
+    font-size: 1.5rem;
+  }
+
+  .warrior-content {
+    padding: 1.5rem;
+  }
+
+  .back-button-header {
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legends-page {
+    padding: 0.5rem;
+  }
+
+  .legends-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .legends-title {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .title-accent {
+    margin: 0 0.5rem;
+  }
+
+  .legends-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .warrior-name {
+    font-size: 1.3rem;
+  }
+
+  .warrior-content {
+    padding: 1rem;
+  }
+
+  .description-title {
+    font-size: 1rem;
+  }
+
+  .warrior-description {
+    font-size: 0.9rem;
+  }
+
+  .warrior-crest-icon {
+    font-size: 2.5rem;
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Jerlin Shabi",
+    "formerRole": "Basher",
+    "description": "Enhancing skills in web development, with a focus on solving complex problems and building robust applications.",
+    "yearActive": "2023-2024"
+  },
+  {
+    "id": 2,
+    "name": "Haleel Rahman",
+    "formerRole": "Captain Basher",
+    "description": "Focused on mastering Embedded Systems, System Administration, and Networking to build resilient systems.",
+    "yearActive": "2023-2024"
+  }
+]

@@ -1,0 +1,575 @@
+.warriors-detail-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3d2817 0%, #1a1410 50%, #2d1f14 100%);
+  color: #d4af37;
+  padding: 2rem;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Cinzel', 'Georgia', serif;
+  background-attachment: fixed;
+}
+
+.warriors-detail-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(212, 175, 55, 0.05) 2px,
+      rgba(212, 175, 55, 0.05) 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(212, 175, 55, 0.05) 2px,
+      rgba(212, 175, 55, 0.05) 4px
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Back Button */
+.back-button-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #3d2817 0%, #2d1f14 100%);
+  border: 3px solid #d4af37;
+  color: #d4af37;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Cinzel', serif;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2), 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.back-button-header::before {
+  content: '⟨';
+  margin-right: 0.5rem;
+}
+
+.back-button-header:hover {
+  background: linear-gradient(135deg, #d4af37 0%, #c19b1b 100%);
+  color: #3d2817;
+  transform: translateX(-8px);
+  box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.5), 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.back-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3d2817 0%, #2d1f14 100%);
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+.back-button:hover {
+  background: #d4af37;
+  color: #3d2817;
+}
+
+/* Container */
+.warriors-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading,
+.not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.5rem;
+  color: #d4af37;
+  font-family: 'Cinzel', serif;
+}
+
+.not-found h2 {
+  margin-bottom: 2rem;
+  color: #b8860b;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Header Section */
+.detail-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(61, 40, 23, 0.9) 0%, rgba(45, 31, 20, 0.9) 100%);
+  border-radius: 0;
+  border: 3px solid #d4af37;
+  box-shadow: 
+    inset 0 0 30px rgba(212, 175, 55, 0.2),
+    0 0 40px rgba(0, 0, 0, 0.8),
+    0 0 80px rgba(212, 175, 55, 0.3);
+  position: relative;
+}
+
+.detail-header::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 40px;
+  height: 10px;
+  background: #d4af37;
+  border-radius: 2px;
+  box-shadow: 60px 0 0 #d4af37, 120px 0 0 #d4af37, 180px 0 0 #d4af37, 240px 0 0 #d4af37, 300px 0 0 #d4af37, 360px 0 0 #d4af37, 420px 0 0 #d4af37;
+}
+
+/* Warrior Crest */
+.warrior-crest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(92, 46, 15, 0.3) 100%);
+  border: 3px solid #d4af37;
+  border-radius: 0;
+  position: relative;
+}
+
+.warrior-crest::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  pointer-events: none;
+}
+
+.crest-ornament {
+  font-size: 2.5rem;
+  color: #d4af37;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+.crest-symbol {
+  font-size: 3.5rem;
+  color: #d4af37;
+  text-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.8),
+    0 0 40px rgba(212, 175, 55, 0.5);
+  animation: crackle 3s ease-in-out infinite;
+}
+
+@keyframes crackle {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px rgba(212, 175, 55, 0.8),
+      0 0 40px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px rgba(212, 175, 55, 1),
+      0 0 60px rgba(212, 175, 55, 0.7);
+  }
+}
+
+/* Header Info */
+.detail-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-left: 2rem;
+  border-left: 3px solid #d4af37;
+}
+
+.warrior-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b4513 0%, #5c2e0f 100%);
+  color: #d4af37;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: fit-content;
+  font-size: 0.85rem;
+  box-shadow: 
+    0 4px 15px rgba(139, 69, 19, 0.6),
+    inset 0 0 10px rgba(212, 175, 55, 0.2);
+  border: 2px solid #d4af37;
+  font-family: 'Cinzel', serif;
+}
+
+.detail-name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(212, 175, 55, 0.3);
+  line-height: 1.2;
+  font-family: 'Cinzel', serif;
+}
+
+.detail-status {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.6) 0%, rgba(92, 46, 15, 0.6) 100%);
+  border: 2px solid #8b4513;
+  color: #d4af37;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  font-weight: 600;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+}
+
+.header-ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #d4af37;
+}
+
+.ornament {
+  font-size: 1.8rem;
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.ornament-line {
+  flex: 1;
+  color: rgba(212, 175, 55, 0.4);
+  letter-spacing: 4px;
+}
+
+/* Content Sections */
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.detail-section {
+  background: linear-gradient(135deg, rgba(61, 40, 23, 0.8) 0%, rgba(45, 31, 20, 0.8) 100%);
+  padding: 3rem;
+  border-radius: 0;
+  border: 3px solid #d4af37;
+  box-shadow: 
+    inset 0 0 20px rgba(212, 175, 55, 0.1),
+    0 0 30px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(212, 175, 55, 0.2);
+  animation: slideInUp 0.6s ease-out;
+  position: relative;
+}
+
+.detail-section::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 30px;
+  width: 30px;
+  height: 6px;
+  background: #d4af37;
+  box-shadow: 60px 0 0 #d4af37, 120px 0 0 #d4af37, 180px 0 0 #d4af37, 240px 0 0 #d4af37;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-heading {
+  font-size: 1.8rem;
+  color: #d4af37;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+}
+
+.heading-accent {
+  color: #8b4513;
+  font-size: 1.6rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Legacy Content */
+.legacy-content {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(92, 46, 15, 0.2) 100%);
+  border: 2px solid #8b4513;
+  border-radius: 0;
+}
+
+.legacy-description {
+  font-size: 1.1rem;
+  color: #e8d4a0;
+  line-height: 1.8;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(92, 46, 15, 0.3) 100%);
+  border: 2px solid #8b4513;
+  border-radius: 0;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.info-card::before {
+  content: '◆';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d4af37;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #3d2817 0%, #2d1f14 100%);
+  padding: 0 0.5rem;
+}
+
+.info-card:hover {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.5) 0%, rgba(92, 46, 15, 0.5) 100%);
+  transform: translateY(-5px);
+  box-shadow: 
+    0 8px 25px rgba(212, 175, 55, 0.3),
+    inset 0 0 10px rgba(212, 175, 55, 0.1);
+  border-color: #d4af37;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  color: #c19b1b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  color: #e8d4a0;
+  font-weight: 500;
+  font-family: 'Georgia', serif;
+}
+
+/* Creed Content */
+.creed-content {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(92, 46, 15, 0.2) 100%);
+  border: 2px dashed #8b4513;
+  border-radius: 0;
+}
+
+.creed-text {
+  font-size: 1.1rem;
+  color: #e8d4a0;
+  line-height: 1.9;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.creed-ornament {
+  text-align: center;
+  color: #d4af37;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* Honors Section */
+.honor-section {
+  border: 3px double #d4af37;
+  background: linear-gradient(135deg, rgba(61, 40, 23, 0.9) 0%, rgba(45, 31, 20, 0.9) 100%);
+}
+
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+}
+
+.honor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(92, 46, 15, 0.3) 100%);
+  border: 2px solid #8b4513;
+  border-radius: 0;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.honor-card:hover {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.5) 0%, rgba(92, 46, 15, 0.5) 100%);
+  transform: translateY(-8px);
+  box-shadow: 
+    0 10px 30px rgba(212, 175, 55, 0.4),
+    inset 0 0 10px rgba(212, 175, 55, 0.1);
+  border-color: #d4af37;
+}
+
+.honor-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+.honor-text {
+  font-size: 0.95rem;
+  color: #e8d4a0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Cinzel', serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .warriors-detail-page {
+    padding: 1rem;
+  }
+
+  .detail-header {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .detail-header-info {
+    padding-left: 0;
+    padding-top: 2rem;
+    border-left: none;
+    border-top: 3px solid #d4af37;
+  }
+
+  .detail-name {
+    font-size: 2rem;
+  }
+
+  .section-heading {
+    font-size: 1.3rem;
+  }
+
+  .detail-section {
+    padding: 1.5rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .honors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .back-button-header {
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .crest-symbol {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .warriors-detail-page {
+    padding: 0.5rem;
+  }
+
+  .detail-header {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .detail-name {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .section-heading {
+    font-size: 1rem;
+  }
+
+  .detail-section {
+    padding: 1rem;
+  }
+
+  .info-label {
+    font-size: 0.75rem;
+  }
+
+  .info-value {
+    font-size: 0.95rem;
+  }
+
+  .detail-header-info {
+    gap: 1rem;
+  }
+
+  .header-ornament {
+    gap: 0.5rem;
+  }
+
+  .crest-symbol {
+    font-size: 2rem;
+  }
+
+  .crest-ornament {
+    font-size: 1.8rem;
+  }
+}

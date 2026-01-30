@@ -1,0 +1,408 @@
+.about {
+  position: relative;
+  min-height: 200vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: 
+    radial-gradient(ellipse at center, rgba(139, 115, 85, 0.15) 0%, transparent 70%),
+    linear-gradient(to bottom, #2a241e 0%, #3a342e 50%, #2a241e 100%);
+  overflow: visible;
+}
+
+.parchment-scroll {
+  position: relative;
+  width: min(900px, 90%);
+  max-width: 900px;
+  min-height: 80vh;
+  background: 
+    /* Aged spots and water stains */
+    radial-gradient(circle at 15% 20%, rgba(139, 100, 60, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(107, 70, 40, 0.12) 0%, transparent 30%),
+    radial-gradient(circle at 25% 80%, rgba(139, 100, 60, 0.1) 0%, transparent 28%),
+    radial-gradient(circle at 75% 75%, rgba(107, 70, 40, 0.08) 0%, transparent 32%),
+    /* Fine wrinkles and creases */
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="8" seed="2" result="noise" /><feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" /></filter><rect width="400" height="400" fill="%23d4c5b0" filter="url(%23noise)" opacity="0.8"/></svg>'),
+    /* Paper texture overlay */
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="fiber"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="4" seed="1" /></filter><rect width="200" height="200" fill="%23e8dcc8" /><g opacity="0.15" filter="url(%23fiber)"><rect width="200" height="200" /></g></svg>'),
+    /* Base gradient - aged parchment color */
+    linear-gradient(180deg, 
+      #e8dcc8 0%, 
+      #e0d5bd 15%, 
+      #d8cdb5 35%, 
+      #d0c5ad 50%, 
+      #c9b9a1 65%, 
+      #c1b199 80%, 
+      #b8a890 100%);
+  background-size: 
+    100% 100%,
+    600px 600px,
+    300px 300px,
+    100%;
+  background-position: 
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  border: 2px solid #8b7355;
+  border-radius: 2px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    inset 0 0 120px rgba(107, 70, 40, 0.2),
+    inset 0 0 40px rgba(212, 197, 176, 0.4),
+    inset -2px -2px 8px rgba(0, 0, 0, 0.15),
+    inset 2px 2px 8px rgba(255, 255, 255, 0.1);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* Overlay for additional aging effects */
+.parchment-scroll::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Fine crease lines */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 120px,
+      rgba(139, 100, 60, 0.08) 120px,
+      rgba(139, 100, 60, 0.08) 121px
+    ),
+    /* Vertical age lines */
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(107, 70, 40, 0.05) 25%,
+      rgba(107, 70, 40, 0.08) 50%,
+      rgba(107, 70, 40, 0.05) 75%,
+      transparent 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.scroll-edge {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: 
+    linear-gradient(90deg, transparent 0%, #c9b9a1 10%, #d4c5b0 50%, #c9b9a1 90%, transparent 100%),
+    repeating-linear-gradient(90deg, #8b7355 0px, transparent 2px, transparent 8px);
+  background-size: 100% 100%, 10px 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  box-shadow: 
+    inset 0 -1px 3px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.top-edge {
+  margin-bottom: -1px;
+  clip-path: polygon(
+    0% 40%, 2% 35%, 5% 38%, 8% 32%, 12% 36%, 15% 30%, 
+    20% 35%, 25% 32%, 30% 37%, 35% 33%, 40% 38%, 45% 34%,
+    50% 36%, 55% 32%, 60% 37%, 65% 33%, 70% 35%, 75% 31%,
+    80% 36%, 85% 33%, 90% 38%, 95% 35%, 98% 37%, 100% 40%,
+    100% 100%, 0% 100%
+  );
+}
+
+.bottom-edge {
+  margin-top: -1px;
+  clip-path: polygon(
+    0% 0%, 100% 0%,
+    100% 60%, 98% 65%, 95% 62%, 90% 68%, 85% 64%, 80% 67%,
+    75% 63%, 70% 66%, 65% 62%, 60% 65%, 55% 61%, 50% 64%,
+    45% 60%, 40% 63%, 35% 59%, 30% 62%, 25% 58%, 20% 61%,
+    15% 57%, 10% 60%, 5% 56%, 2% 59%, 0% 60%
+  );
+}
+
+.scroll-content {
+  padding: 4rem 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.wax-seal {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: 
+    radial-gradient(circle, #8b3d3d 0%, #6b2d2d 70%, #4b1d1d 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(139, 61, 61, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.seal-icon {
+  font-size: 1.5rem;
+  color: #d4a574;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+  color: #3a2f27;
+  margin: 120 0 3rem 0;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    1px 1px 0px rgba(212, 197, 176, 0.4),
+    -1px -1px 0px rgba(107, 89, 69, 0.1);
+}
+
+.scroll-text {
+  font-family: 'Cinzel', serif;
+  line-height: 2;
+}
+
+.manuscript-line {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #2a1f16;
+  margin: 0 0 1.5rem 0;
+  text-align: justify;
+  text-indent: 2em;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+.manuscript-line .char {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.05s ease-out;
+}
+
+.ink-divider {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #8b7355;
+  margin: 2rem 0;
+  opacity: 0.6;
+}
+
+.manuscript-quote {
+  font-style: italic;
+  text-indent: 0;
+  text-align: center;
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  color: #3a2f27;
+  margin: 2rem 0 1rem 0;
+  padding: 1rem 2rem;
+  border-left: 3px solid #8b7355;
+  border-right: 3px solid #8b7355;
+}
+
+.manuscript-signature {
+  text-align: right;
+  font-size: 0.95rem;
+  color: #5a4f47;
+  font-style: italic;
+  text-indent: 0;
+  margin: 0.5rem 0 0 0;
+}
+
+.dust-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle, rgba(212, 197, 176, 0.3) 1px, transparent 1px),
+    radial-gradient(circle, rgba(212, 197, 176, 0.2) 1px, transparent 1px);
+  background-size: 50px 50px, 80px 80px;
+  background-position: 0 0, 40px 40px;
+  opacity: 0.3;
+  animation: dustFloat 20s linear infinite;
+}
+
+@keyframes dustFloat {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 2rem 1rem;
+  }
+
+  .parchment-scroll {
+    width: 95%;
+  }
+
+  .scroll-content {
+    padding: 3rem 2rem;
+  }
+
+  .manuscript-line {
+    font-size: 1rem;
+    text-indent: 1.5em;
+  }
+
+  .scroll-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.section-ornament {
+  text-align: center;
+  font-size: 2rem;
+  color: #8b7355;
+  margin: 1rem 0;
+  opacity: 0.6;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  text-align: center;
+  color: #2a2419;
+  margin: 2rem 0 4rem;
+  letter-spacing: 0.12em;
+  text-shadow: 
+    1px 1px 0px rgba(212, 197, 176, 0.6),
+    2px 2px 4px rgba(139, 115, 85, 0.3),
+    0 0 20px rgba(212, 165, 116, 0.2);
+  position: relative;
+}
+
+.title-accent {
+  display: inline-block;
+  margin: 0 1rem;
+  font-size: 0.4em;
+  color: #8b7355;
+  vertical-align: middle;
+}
+
+.about-content {
+  color: #d4c5b0;
+}
+
+.about-text {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+  text-align: justify;
+  color: #2a2419;
+  text-shadow: 0.5px 0.5px 1px rgba(212, 197, 176, 0.5);
+  position: relative;
+}
+
+.intro-text {
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-text strong {
+  color: #6b5945;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0.5px 0.5px 1px rgba(212, 165, 116, 0.4);
+}
+
+.story-divider {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.divider-symbol {
+  font-size: 2rem;
+  color: #8b7355;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.about-quote {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-left: 4px solid #8b7355;
+  background: rgba(139, 115, 85, 0.15);
+  position: relative;
+  box-shadow: inset 2px 2px 4px rgba(139, 115, 85, 0.1);
+}
+
+.about-quote::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 6rem;
+  color: rgba(139, 115, 85, 0.25);
+  opacity: 0.5;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.about-quote blockquote {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-style: italic;
+  line-height: 1.8;
+  margin: 0 0 1rem 0;
+  color: #3a3428;
+  text-shadow: 0.5px 0.5px 1px rgba(212, 197, 176, 0.5);
+}
+
+.about-quote cite {
+  display: block;
+  text-align: right;
+  font-family: 'Crimson Text', serif;
+  font-size: 1rem;
+  color: #6b5945;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 6rem 1rem;
+  }
+  
+  .about-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .title-accent {
+    display: none;
+  }
+  
+  .about-text {
+    text-align: left;
+  }
+  
+  .about-quote {
+    padding: 1.5rem;
+  }
+}

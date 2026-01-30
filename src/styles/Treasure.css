@@ -1,0 +1,801 @@
+/* Royal Treasury Vault Styles */
+
+.treasure-page {
+  min-height: 100vh;
+  background: 
+    radial-gradient(ellipse at center top, rgba(139, 115, 85, 0.15) 0%, transparent 50%),
+    linear-gradient(to bottom, #1a1512 0%, #2a241e 50%, #1a1512 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Header */
+.treasure-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 2rem;
+  background: linear-gradient(to bottom, rgba(26, 21, 18, 0.95) 0%, transparent 100%);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(139, 115, 85, 0.2);
+  border: 2px solid #8b7355;
+  color: #d4c5b0;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.back-button:hover {
+  background: rgba(139, 115, 85, 0.4);
+  border-color: #d4a574;
+  transform: translateX(-5px);
+}
+
+.treasure-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #d4a574;
+  text-shadow: 
+    0 0 20px rgba(212, 165, 116, 0.5),
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.1em;
+}
+
+/* Vault Section */
+.vault-section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  perspective: 2000px;
+  overflow: hidden;
+}
+
+.vault-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.stone-wall {
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 120px,
+      rgba(0, 0, 0, 0.1) 120px,
+      rgba(0, 0, 0, 0.1) 122px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 100px,
+      rgba(0, 0, 0, 0.1) 100px,
+      rgba(0, 0, 0, 0.1) 102px
+    ),
+    linear-gradient(135deg, #3a342e 0%, #2a241e 50%, #3a342e 100%);
+}
+
+.vault-shadows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+/* Vault Door */
+.vault-door {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  margin: 0;
+}
+
+.door-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.door-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, #4a4238 0%, #3a342e 50%, #2a241e 100%);
+  border: 8px solid #8b7355;
+  box-shadow: 
+    inset 0 0 80px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(139, 115, 85, 0.2),
+    0 20px 60px rgba(0, 0, 0, 0.9);
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
+
+.door-left {
+  left: 0;
+  transform-origin: left center;
+  border-right: none;
+}
+
+.door-right {
+  right: 0;
+  transform-origin: right center;
+  border-left: none;
+}
+
+.door-detail {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 2rem;
+}
+
+.door-lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: 
+    radial-gradient(circle, #6b5d4f 0%, #4a4238 70%, #2a241e 100%);
+  border: 6px solid #8b7355;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.lock-center {
+  font-size: 3rem;
+  color: #d4a574;
+  text-shadow: 0 2px 10px rgba(212, 165, 116, 0.5);
+}
+
+.door-rivets {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  padding: 3rem;
+  gap: 1rem;
+}
+
+.rivet {
+  width: 20px;
+  height: 20px;
+  background: 
+    radial-gradient(circle at 30% 30%, #8b7355, #4a4238);
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.8),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Golden Light */
+.golden-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: 
+    radial-gradient(ellipse at center, 
+      rgba(255, 215, 0, 0.4) 0%,
+      rgba(255, 200, 50, 0.3) 30%,
+      rgba(255, 180, 0, 0.1) 60%,
+      transparent 100%
+    );
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+  filter: blur(40px);
+  animation: lightPulse 3s ease-in-out infinite;
+}
+
+@keyframes lightPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Dust Particles */
+.dust-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(212, 197, 176, 0.6);
+  border-radius: 50%;
+  bottom: 0;
+  box-shadow: 0 0 10px rgba(212, 197, 176, 0.4);
+}
+
+/* Treasures */
+.treasures-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  pointer-events: none;
+}
+
+.treasures-container * {
+  pointer-events: auto;
+}
+
+.treasures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding: 0;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.treasure-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: floatGentle 3s ease-in-out infinite;
+}
+
+.treasure-item:nth-child(2n) {
+  animation-delay: -1s;
+}
+
+.treasure-item:nth-child(3n) {
+  animation-delay: -1.5s;
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.treasure-item:hover {
+  transform: translateY(-30px) scale(1.1) !important;
+  z-index: 30;
+}
+
+.treasure-item:hover .treasure-glow {
+  opacity: 0.9;
+  transform: scale(1.4);
+}
+
+.treasure-item:hover .treasure-inscription {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Treasure Box */
+.treasure-pedestal {
+  position: relative;
+  width: 200px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transform-style: preserve-3d;
+}
+
+.pedestal-top {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 70px;
+  background: 
+    linear-gradient(to bottom, #6b5d4f 0%, #4a4238 50%, #3a342e 100%);
+  border: 4px solid #8b7355;
+  border-radius: 12px 12px 4px 4px;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.8),
+    inset 0 2px 8px rgba(139, 115, 85, 0.3),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.pedestal-top::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 20px;
+  background: #2a241e;
+  border: 2px solid #8b7355;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.pedestal-top::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #d4a574 0%, #8b7355 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    inset 0 -1px 4px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.pedestal-column {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  height: 90px;
+  background: 
+    linear-gradient(to bottom, #4a4238 0%, #3a342e 100%);
+  border: 4px solid #8b7355;
+  border-top: none;
+  border-radius: 4px 4px 8px 8px;
+  box-shadow: 
+    inset 0 0 30px rgba(0, 0, 0, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.pedestal-column::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 3px;
+  background: #8b7355;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.pedestal-column::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  height: 3px;
+  background: #8b7355;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.pedestal-base {
+  display: none;
+}
+
+/* Treasure Icon */
+.treasure-icon-wrapper {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotateIdle 8s linear infinite;
+}
+
+@keyframes rotateIdle {
+  0% {
+    transform: translateX(-50%) rotateY(0deg);
+  }
+  100% {
+    transform: translateX(-50%) rotateY(360deg);
+  }
+}
+
+.treasure-icon {
+  font-size: 4rem;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+  z-index: 2;
+  position: relative;
+  color: #d4a574;
+}
+
+.treasure-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.6) 0%,
+    rgba(212, 165, 116, 0.3) 40%,
+    transparent 70%
+  );
+  opacity: 0.4;
+  transition: all 0.5s ease;
+  animation: goldenGlowPulse 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes goldenGlowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+/* Treasure Inscription */
+.treasure-inscription {
+  position: absolute;
+  bottom: -80px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(26, 21, 18, 0.9);
+  border: 2px solid #8b7355;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.treasure-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #d4a574;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 8px rgba(212, 165, 116, 0.5);
+}
+
+.treasure-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: #c9b9a1;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: fixed;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 50;
+  color: #d4a574;
+  font-family: 'Cinzel', serif;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.scroll-indicator p {
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.scroll-arrow {
+  font-size: 2rem;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Story Modal */
+.story-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.story-modal {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: rgba(139, 115, 85, 0.3);
+  border: 2px solid #8b7355;
+  color: #d4c5b0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.close-modal:hover {
+  background: rgba(139, 115, 85, 0.6);
+  transform: rotate(90deg);
+}
+
+/* Story Parchment */
+.story-parchment {
+  position: relative;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(139, 100, 60, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(107, 70, 40, 0.12) 0%, transparent 30%),
+    linear-gradient(180deg, 
+      #e8dcc8 0%, 
+      #d8cdb5 50%, 
+      #c9b9a1 100%);
+  border: 3px solid #8b7355;
+  border-radius: 8px;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.9),
+    inset 0 0 60px rgba(107, 70, 40, 0.2);
+  overflow: hidden;
+}
+
+.parchment-edge {
+  width: 100%;
+  height: 30px;
+  background: 
+    linear-gradient(90deg, 
+      transparent 0%, 
+      #c9b9a1 10%, 
+      #d4c5b0 50%, 
+      #c9b9a1 90%, 
+      transparent 100%);
+  position: relative;
+}
+
+.parchment-edge.top {
+  clip-path: polygon(
+    0% 50%, 5% 45%, 10% 50%, 15% 40%, 20% 50%, 
+    25% 45%, 30% 50%, 35% 40%, 40% 50%, 45% 45%,
+    50% 50%, 55% 40%, 60% 50%, 65% 45%, 70% 50%, 
+    75% 40%, 80% 50%, 85% 45%, 90% 50%, 95% 40%, 
+    100% 50%, 100% 100%, 0% 100%
+  );
+}
+
+.parchment-edge.bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 50%, 95% 60%, 90% 50%, 
+    85% 55%, 80% 50%, 75% 60%, 70% 50%, 65% 55%,
+    60% 50%, 55% 60%, 50% 50%, 45% 55%, 40% 50%, 
+    35% 60%, 30% 50%, 25% 55%, 20% 50%, 15% 60%, 
+    10% 50%, 5% 55%, 0% 50%
+  );
+}
+
+.story-content {
+  padding: 3rem 4rem 4rem;
+  text-align: center;
+}
+
+.story-icon {
+  font-size: 6rem;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+}
+
+.story-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #3a2f27;
+  margin: 0 0 1rem 0;
+  text-shadow: 1px 1px 2px rgba(212, 197, 176, 0.5);
+}
+
+.story-divider {
+  font-size: 1.5rem;
+  color: #8b7355;
+  margin: 1.5rem 0;
+  opacity: 0.6;
+}
+
+.story-inscription {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #6b5d4f;
+  margin: 1.5rem 0;
+}
+
+.story-text {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #2a1f16;
+  text-align: justify;
+  text-indent: 2em;
+  margin: 2rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .treasures-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+  }
+
+  .vault-door {
+    max-width: 600px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .treasure-header {
+    padding: 1.5rem;
+  }
+
+  .treasure-title {
+    font-size: 1.5rem;
+    position: relative;
+    left: auto;
+    transform: none;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .treasures-grid {
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+
+  .vault-door {
+    max-width: 90%;
+    height: 400px;
+  }
+
+  .story-content {
+    padding: 2rem;
+  }
+
+  .story-title {
+    font-size: 1.8rem;
+  }
+
+  .story-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-button span {
+    display: none;
+  }
+
+  .treasures-container {
+    padding: 2rem 1rem;
+  }
+
+  .door-lock {
+    width: 80px;
+    height: 80px;
+  }
+
+  .lock-center {
+    font-size: 2rem;
+  }
+}

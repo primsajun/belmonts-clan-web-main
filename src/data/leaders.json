@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Geo Nithin",
+    "title": "Data Scientist",
+    "status": "Active Member",
+    "yearStudying": "2nd Year",
+    "department": "Computer Science",
+    "registerNumber": "963524104048",
+    "role": "Captain Basher",
+    "yearJoined": 2025,
+    "projects": ["Responsive Portfolio Site"],
+    "buttons": ["View Portfolio", "LinkedIn", "Bash Profile"]
+  },
+  {
+    "id": 2,
+    "name": "Sriharshini",
+    "title": "Full-Stack Web Developer",
+    "status": "Active Member",
+    "yearStudying": "3rd Year",
+    "department": "Computer Science",
+    "registerNumber": "CS/2023/042",
+    "role": "Captain Basher",
+    "yearJoined": 2024,
+    "projects": ["Responsive Portfolio Site"],
+    "buttons": ["View Portfolio", "LinkedIn", "Bash Profile"]
+  }
+]

@@ -1,0 +1,428 @@
+.castle-wall-gallery {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1410 0%, #2d2420 50%, #1a1410 100%);
+  overflow: hidden;
+  padding: 60px 20px;
+  font-family: 'Georgia', serif;
+}
+
+/* Stone wall background texture */
+.castle-wall-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.08) 0px,
+      rgba(0, 0, 0, 0.08) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  background-size: 100% 2px, 2px 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Gallery header */
+.gallery-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #d4af37;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.gallery-header h2 {
+  font-size: 3.5rem;
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.gallery-header p {
+  font-size: 1.2rem;
+  color: #c0a080;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Main frames grid */
+.frames-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+
+/* Frame wrapper */
+.frame-wrapper {
+  cursor: pointer;
+  transform: perspective(1200px);
+  transition: filter 0.3s ease;
+}
+
+.frame-wrapper:hover {
+  filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.3));
+}
+
+/* Stone frame outer layer */
+.stone-frame {
+  position: relative;
+  background: linear-gradient(135deg, #4a3f36 0%, #5a4f46 50%, #3a2f26 100%);
+  border: 8px solid;
+  border-color: #5a4f46 #3a2f26 #3a2f26 #5a4f46;
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(0, 0, 0, 0.8);
+  backdrop-filter: none;
+  padding: 12px;
+  aspect-ratio: 3/4;
+}
+
+/* Stone texture overlay */
+.stone-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 4px
+    );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Wood frame inner layer */
+.wood-frame {
+  position: relative;
+  background: linear-gradient(135deg, #8b7355 0%, #6b5345 50%, #4a3a2a 100%);
+  border: 6px solid;
+  border-color: #8b7355 #4a3a2a #4a3a2a #8b7355;
+  border-radius: 1px;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Wood texture */
+.wood-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Image container */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1px;
+  background: #000;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+/* Image overlay (vignette effect) */
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+}
+
+/* Frame ornaments (decorative corners) */
+.ornament {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #d4af37 0%, #a0860d 50%, #6b5f0f 100%);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 1px 3px rgba(255, 255, 255, 0.4),
+    0 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+.ornament.top-left {
+  top: -10px;
+  left: -10px;
+}
+
+.ornament.top-right {
+  top: -10px;
+  right: -10px;
+}
+
+.ornament.bottom-left {
+  bottom: -10px;
+  left: -10px;
+}
+
+.ornament.bottom-right {
+  bottom: -10px;
+  right: -10px;
+}
+
+/* Frame label */
+.frame-label {
+  margin-top: 15px;
+  text-align: center;
+  color: #d4af37;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.frame-wrapper:hover .frame-label {
+  opacity: 1;
+}
+
+.frame-label h3 {
+  font-size: 1.1rem;
+  margin: 8px 0 4px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.frame-label p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #c0a080;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Modal overlay */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  background: #1a1410;
+  border: 10px solid;
+  border-color: #5a4f46 #3a2f26 #3a2f26 #5a4f46;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.image-modal-content img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 2px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.modal-info {
+  text-align: center;
+  color: #d4af37;
+}
+
+.modal-info h2 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.modal-info p {
+  margin: 0;
+  color: #c0a080;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #d4af37;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+  color: #ffcc00;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .castle-wall-gallery {
+    padding: 40px 15px;
+  }
+
+  .gallery-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .gallery-header p {
+    font-size: 1rem;
+  }
+
+  .frames-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .torch {
+    width: 60px;
+    height: 150px;
+  }
+
+  .torch-left {
+    left: 10px;
+  }
+
+  .torch-right {
+    right: 10px;
+  }
+
+  .frame-label h3 {
+    font-size: 1rem;
+  }
+
+  .frame-label p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .frames-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .torch {
+    display: none;
+  }
+
+  .image-modal-content {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .modal-close {
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+  }
+}
