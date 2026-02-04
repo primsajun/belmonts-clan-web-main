@@ -1,0 +1,685 @@
+.timeline {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 2rem;
+  background:
+    linear-gradient(135deg, rgba(26, 20, 16, 0.98) 0%, rgba(45, 36, 25, 0.98) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%231a1410" width="100" height="100"/><path d="M10 10 Q20 15 30 10" stroke="%238b7355" stroke-width="0.5" fill="none" opacity="0.3"/></svg>');
+  background-size: cover, 50px 50px;
+  overflow-x: hidden;
+}
+
+.timeline-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  color: #d4a574;
+  margin-bottom: 1rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.title-accent {
+  color: #8b7355;
+  margin: 0 1rem;
+}
+
+.timeline-intro {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  text-align: center;
+  color: #b8a890;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  letter-spacing: 0.05em;
+  font-style: italic;
+}
+
+/* Constellation Map */
+.constellation-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #e8dcc8;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 4px solid #8b7355;
+  border-radius: 10px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset -2px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 3rem 0;
+}
+
+/* SVG Lines */
+.constellation-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.constellation-line {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  stroke-linecap: round;
+}
+
+/* Traveling Image */
+.traveling-image {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: 15;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.traveling-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 3px solid #d4a574;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 0 20px rgba(212, 165, 116, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  animation: travelerGlow 2s ease-in-out infinite;
+}
+
+@keyframes travelerGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(212, 165, 116, 0.4),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(212, 165, 116, 0.8),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Map Checkpoints */
+.map-checkpoint {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkpoint-marker {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.checkpoint-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(139, 115, 85, 0.6), transparent);
+  border-radius: 50%;
+  animation: checkpointPulse 2s ease-out infinite;
+}
+
+@keyframes checkpointPulse {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+  }
+}
+
+.checkpoint-icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #8b7355 0%, #6b5c4f 100%);
+  border: 2px solid #d4a574;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  animation: checkpointFloat 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes checkpointFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.checkpoint-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: #8b7355;
+  background: rgba(232, 220, 200, 0.9);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #8b7355;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.05em;
+}
+
+.map-checkpoint:hover .checkpoint-icon {
+  transform: scale(1.2);
+  background: linear-gradient(135deg, #a68a6a 0%, #8b7355 100%);
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.7),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.map-checkpoint:hover .checkpoint-label {
+  background: rgba(212, 197, 176, 1);
+  border-color: #a68a6a;
+}
+
+/* Constellation Points (Stars) */
+.constellation-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.constellation-point:hover {
+  z-index: 50;
+}
+
+/* Wax Pin */
+.wax-pin {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  transform-origin: center;
+  transition: all 0.4s ease;
+}
+
+.constellation-point:hover .wax-pin {
+  transform: scale(1.3) rotate(-15deg);
+}
+
+.pin-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at 30% 30%, #d4a574, #a0886d);
+  border: 3px solid #6b5c4f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.6),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.4),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.pin-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.pin-icon-svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.pin-seal {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 25px;
+  background: linear-gradient(135deg, #8b7355 0%, #6b5c4f 100%);
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 50% 90%, 15% 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Event Popup */
+.event-popup {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  min-width: 280px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(45, 36, 25, 0.95) 0%, rgba(26, 20, 16, 0.95) 100%);
+  border: 2px solid #8b7355;
+  border-radius: 5px;
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(212, 165, 116, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+  pointer-events: none;
+  text-align: center;
+}
+
+.event-popup::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #8b7355;
+}
+
+.constellation-point:hover .event-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(calc(-100% - 15px));
+}
+
+.constellation-point.focused .event-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(calc(-100% - 15px));
+}
+
+.constellation-point.popup-below .event-popup {
+  top: calc(100% + 15px);
+  transform: translateX(-50%) translateY(0);
+}
+
+.constellation-point.popup-below .event-popup::before {
+  top: -10px;
+  bottom: auto;
+  border-top: 0;
+  border-bottom: 10px solid #8b7355;
+}
+
+.constellation-point.popup-below:hover .event-popup,
+.constellation-point.popup-below.focused .event-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.popup-year {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #d4a574;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.popup-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4c5b0;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: 0.03em;
+}
+
+.popup-description {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #b8a890;
+  margin: 0 0 1rem 0;
+}
+
+.popup-ornament {
+  font-size: 0.8rem;
+  color: #8b7355;
+  letter-spacing: 0.1em;
+}
+
+/* Compass Rose - Enhanced */
+.compass-rose {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.compass-rose:hover {
+  opacity: 1;
+}
+
+/* Outer ring */
+.compass-outer-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #8b7355;
+  border-radius: 50%;
+  box-shadow:
+    0 0 20px rgba(139, 115, 85, 0.5),
+    inset 0 0 10px rgba(212, 165, 116, 0.2);
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 115, 85, 0.5), inset 0 0 10px rgba(212, 165, 116, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(212, 165, 116, 0.6), inset 0 0 15px rgba(212, 165, 116, 0.3); }
+}
+
+/* Cardinal directions */
+.compass-direction {
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4a574;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #8b7355;
+  border-radius: 50%;
+  background: rgba(45, 36, 25, 0.7);
+  transition: all 0.3s ease;
+}
+
+.compass-direction:hover {
+  background: rgba(212, 165, 116, 0.3);
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.6);
+  transform: scale(1.15);
+}
+
+.compass-direction.north {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.compass-direction.south {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+}
+
+.compass-direction.east {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(50%);
+}
+
+.compass-direction.west {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+/* Lines connecting directions */
+.compass-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent 0%, #8b7355 50%, transparent 100%);
+  opacity: 0.4;
+}
+
+.compass-line.north-line {
+  width: 2px;
+  height: 35px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.compass-line.south-line {
+  width: 2px;
+  height: 35px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.compass-line.east-line {
+  width: 35px;
+  height: 2px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.compass-line.west-line {
+  width: 35px;
+  height: 2px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Inner compass */
+.compass-inner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.compass-star {
+  font-size: 2.5rem;
+  color: #d4a574;
+  animation: rotate-star 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(212, 165, 116, 0.6));
+}
+
+@keyframes rotate-star {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timeline {
+    padding: 6rem 1rem;
+  }
+
+  .constellation-map {
+    aspect-ratio: 4 / 5;
+  }
+
+  .constellation-point {
+    z-index: 15;
+  }
+
+  .traveling-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .wax-pin {
+    width: 50px;
+    height: 50px;
+  }
+
+  .pin-head {
+    width: 42px;
+    height: 42px;
+  }
+
+  .pin-icon {
+    font-size: 1.5rem;
+  }
+
+  .event-popup {
+    min-width: 240px;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .popup-year {
+    font-size: 1.5rem;
+  }
+
+  .popup-title {
+    font-size: 1rem;
+  }
+
+  .popup-description {
+    font-size: 0.85rem;
+  }
+
+  .compass-rose {
+    width: 100px;
+    height: 100px;
+  }
+
+  .compass-star {
+    font-size: 2rem;
+  }
+
+  .compass-direction {
+    font-size: 0.95rem;
+    width: 26px;
+    height: 26px;
+    border-width: 2px;
+  }
+
+  .compass-line {
+    opacity: 0.3;
+  }
+
+  .compass-line.north-line,
+  .compass-line.south-line {
+    height: 28px;
+  }
+
+  .compass-line.east-line,
+  .compass-line.west-line {
+    width: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline {
+    padding: 4rem 0.5rem;
+  }
+
+  .constellation-map {
+    aspect-ratio: 1;
+    margin: 2rem 0;
+  }
+
+  .wax-pin {
+    width: 40px;
+    height: 40px;
+  }
+
+  .traveling-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pin-head {
+    width: 35px;
+    height: 35px;
+    border-width: 2px;
+  }
+
+  .pin-icon {
+    font-size: 1.2rem;
+  }
+
+  .event-popup {
+    min-width: 200px;
+    padding: 1rem;
+  }
+
+  .popup-year {
+    font-size: 1.3rem;
+  }
+
+  .popup-title {
+    font-size: 0.9rem;
+  }
+
+  .popup-description {
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+  }
+
+  .compass-rose {
+    width: 90px;
+    height: 90px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .compass-direction {
+    font-size: 0.85rem;
+    width: 24px;
+    height: 24px;
+    border-width: 1.5px;
+  }
+
+  .compass-star {
+    font-size: 1.6rem;
+  }
+
+  .compass-line.north-line,
+  .compass-line.south-line {
+    height: 22px;
+  }
+
+  .compass-line.east-line,
+  .compass-line.west-line {
+    width: 22px;
+  }
+}
+
